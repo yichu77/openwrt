@@ -16,12 +16,12 @@ jobs:
 
   build_openwrt:
 
-    name: Build OpenWrt Firmware
+    name: 编译OpenWrt固件
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
-      - name: Space cleanup and Initialization environment
+      - name: 清理空间
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
@@ -37,12 +37,11 @@ jobs:
           sudo -E apt clean
           sudo -E timedatectl set-timezone "Asia/Shanghai"
 
-      - name: Checkout OpenWrt
+      - name: 签入OpenWrt项目
         uses: actions/checkout@v3
 
       - name: Update feeds
         run: |
-          #sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
