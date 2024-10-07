@@ -10,18 +10,19 @@ name: OpenWrt-CI
 on:
   workflow_dispatch:
 
-permissions: write-all
+permissions:
+  contents: read
 
 jobs:
 
   build_openwrt:
 
-    name: 编译OpenWrt固件
+    name: Build OpenWrt Firmware
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
-      - name: 清理空间
+      - name: Space cleanup and Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
@@ -37,11 +38,12 @@ jobs:
           sudo -E apt clean
           sudo -E timedatectl set-timezone "Asia/Shanghai"
 
-      - name: 签入OpenWrt项目
+      - name: Checkout OpenWrt
         uses: actions/checkout@v3
 
       - name: Update feeds
         run: |
+          sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
