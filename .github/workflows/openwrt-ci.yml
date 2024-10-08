@@ -10,7 +10,7 @@ name: OpenWrt-CI
 on:
   workflow_dispatch:
 
-permissions:write-all
+permissions: write-all
 
 
 jobs:
