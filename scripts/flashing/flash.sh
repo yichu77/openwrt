@@ -51,14 +51,14 @@ EOF
 fi
 if [ "$2" = "asus" ]; then
 echo Confirming IP address setting...
-echo -en "get ASUSSPACELINK\x01\x01\xa8\xc0 /dev/null\nquit\n" | tftp 192.168.1.1
-echo Flashing 192.168.1.1 using "$1"...
-echo -en "binary\nput $1 ASUSSPACELINK\nquit\n" | tftp 192.168.1.1
+echo -en "get ASUSSPACELINK\x01\x01\xa8\xc0 /dev/null\nquit\n" | tftp 192.168.2.1
+echo Flashing 192.168.2.1 using "$1"...
+echo -en "binary\nput $1 ASUSSPACELINK\nquit\n" | tftp 192.168.2.1
 echo Please wait until leds stops flashing.
 elif [ "$2" = "linksys" ]; then
-echo Flashing 192.168.1.1 using "$1"...
-echo -en "rexmt 1\ntrace\nbinary\nput $1\nquit\n" | tftp 192.168.1.1
-echo Please wait until power led stops flashing. Do not poweroff! Then you can login via telnet 192.168.1.1.
+echo Flashing 192.168.2.1 using "$1"...
+echo -en "rexmt 1\ntrace\nbinary\nput $1\nquit\n" | tftp 192.168.2.1
+echo Please wait until power led stops flashing. Do not poweroff! Then you can login via telnet 192.168.2.1.
 elif [ "$2" = "toshiba" ]; then
 echo Flashing 192.168.10.1 using "$1"...
 echo -en "rexmt 1\ntrace\nbinary\nput $1\nquit\n" | tftp 192.168.10.1
